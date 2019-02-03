@@ -9,8 +9,6 @@ bot.login(auth.token);
 
 bot.on('ready', function (evt) {
     console.log('Connected');
-    console.log('Logged in as: ');
-    console.log(bot.username + ' - (' + bot.id + ')');
 });
 
 bot.on('message', message => {
@@ -35,4 +33,11 @@ bot.on('message', message => {
 
     }
 });
+
+var cleanupFn = function cleanup() {
+    console.log("Logging off");
+    bot.destroy();
+}
+
+process.on('SIGINT', cleanupFn);
 
