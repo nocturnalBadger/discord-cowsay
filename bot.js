@@ -34,7 +34,6 @@ bot.on('message', message => {
         });
 
         message.channel.send('```' + cowSaid + '```');
-
     }
     else if (message.content.startsWith('cowthink')) {
         var text = message.content.substring('cowthink'.length + 1);
@@ -61,4 +60,5 @@ var cleanupFn = function cleanup() {
 }
 
 process.on('SIGINT', cleanupFn);
+process.on('SIGTERM', cleanupFn);
 
