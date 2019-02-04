@@ -1,6 +1,7 @@
 var cowsay = require('cowsay');
 var Discord = require('discord.js');
 var auth = require('./auth.json');
+var blacklist = require('./blacklist.json');
 
 // Initialize Discord Bot
 var bot = new Discord.Client();
@@ -11,13 +12,20 @@ bot.on('ready', function (evt) {
     console.log('Connected');
 });
 
-var helpText = "Tell me to say something by typing:\n" +
-               "cowsay <message>\n\n" +
+var helpText = "Tell me to say something by\n" +
+               "typing: cowsay <message>\n\n" +
                "Also try: cowthink <message>";
+var deniedText = "I'm sorry, I will not say that.";
 
 bot.on('message', message => {
     if (message.content.startsWith('cowsay')) {
-        var text = message.content.split('cowsay')[1];
+        var text = message.content.substring('cowsay'.length + 1);
+        console.log("Discord user " + message.author.id + " requested that cow say: " + text);
+        if (blacklist.indexOf(message.author.id) != -1) {
+            console.log("User is blacklisted. Request will be denied.");
+            text = deniedText;
+        }
+
         if (text == "")
             text = helpText;
 
@@ -29,7 +37,12 @@ bot.on('message', message => {
 
     }
     else if (message.content.startsWith('cowthink')) {
-        var text = message.content.split('cowthink')[1];
+        var text = message.content.substring('cowthink'.length + 1);
+        console.log("Discord user " + message.author.id + " requested that cow think: " + text);
+        if (blacklist.indexOf(message.author.id) != -1) {
+            console.log("User is blacklisted. Request will be denied.");
+            text = deniedText;
+        }
         if (text == "")
             text = helpText;
 
