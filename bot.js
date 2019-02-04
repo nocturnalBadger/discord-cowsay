@@ -11,9 +11,15 @@ bot.on('ready', function (evt) {
     console.log('Connected');
 });
 
+var helpText = "Tell me to say something by typing:\n" +
+               "cowsay <message>\n\n" +
+               "Also try: cowthink <message>";
+
 bot.on('message', message => {
     if (message.content.startsWith('cowsay')) {
         var text = message.content.split('cowsay')[1];
+        if (text == "")
+            text = helpText;
 
         var cowSaid = cowsay.say({
             text: text,
@@ -24,6 +30,8 @@ bot.on('message', message => {
     }
     else if (message.content.startsWith('cowthink')) {
         var text = message.content.split('cowthink')[1];
+        if (text == "")
+            text = helpText;
 
         var cowSaid = cowsay.think({
             text: text,
