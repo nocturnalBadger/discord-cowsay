@@ -18,7 +18,7 @@ var helpText = "Tell me to say something by\n" +
 var deniedText = "I'm sorry, I will not say that.";
 
 bot.on('message', message => {
-    if (message.content.startsWith('cowsay')||message.content.startsWith('Cowsay')) {
+    if (message.content.toLowerCase().startsWith('cowsay')) {
         var text = message.content.substring('cowsay'.length + 1);
         console.log("Discord user " + message.author.id + " requested that cow say: " + text);
         if (blacklist.indexOf(message.author.id) != -1) {
@@ -35,7 +35,7 @@ bot.on('message', message => {
 
         message.channel.send('```' + cowSaid + '```');
     }
-    else if (message.content.startsWith('cowthink')||message.content.startsWith('Cowthink')) {
+    else if (message.content.toLowerCase().startsWith('cowthink')) {
         var text = message.content.substring('cowthink'.length + 1);
         console.log("Discord user " + message.author.id + " requested that cow think: " + text);
         if (blacklist.indexOf(message.author.id) != -1) {
