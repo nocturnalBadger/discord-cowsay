@@ -20,7 +20,7 @@ var deniedText = "I'm sorry, I will not say that.";
 bot.on('message', message => {
     if (message.content.startsWith('cowsay')||message.content.startsWith('Cowsay')) {
         var text = message.content.substring('cowsay'.length + 1);
-        console.log("Discord user " + message.author.id + " requested that cow say: " + text);
+        console.log("Request received");
         if (blacklist.indexOf(message.author.id) != -1) {
             console.log("User is blacklisted. Request will be denied.");
             text = deniedText;
@@ -34,10 +34,11 @@ bot.on('message', message => {
         });
 
         message.channel.send('```' + cowSaid + '```');
+        console.log("Message sent");
     }
     else if (message.content.startsWith('cowthink')||message.content.startsWith('Cowthink')) {
         var text = message.content.substring('cowthink'.length + 1);
-        console.log("Discord user " + message.author.id + " requested that cow think: " + text);
+        console.log("Request received");
         if (blacklist.indexOf(message.author.id) != -1) {
             console.log("User is blacklisted. Request will be denied.");
             text = deniedText;
@@ -50,7 +51,7 @@ bot.on('message', message => {
         });
 
         message.channel.send('```' + cowSaid + '```');
-
+        console.log("Message sent");
     }
 });
 
