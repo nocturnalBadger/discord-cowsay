@@ -2,6 +2,7 @@ var cowsay = require('cowsay');
 var Discord = require('discord.js');
 var auth = require('./auth.json');
 var blacklist = require('./blacklist.json');
+var cmd = require('parsing.js');
 
 // Initialize Discord Bot
 var bot = new Discord.Client();
@@ -28,10 +29,8 @@ bot.on('message', message => {
 
         if (text == "")
             text = helpText;
-
-        var cowSaid = cowsay.say({
-            text: text,
-        });
+        var cmd = new cmd(text);
+        var cowSaid = cowsay.say(cmd);
 
         message.channel.send('```' + cowSaid + '```');
         console.log("Message sent");
@@ -45,10 +44,8 @@ bot.on('message', message => {
         }
         if (text == "")
             text = helpText;
-
-        var cowSaid = cowsay.think({
-            text: text,
-        });
+        var cmd = new cmd(text);
+        var cowSaid = cowsay.think(cmd);
 
         message.channel.send('```' + cowSaid + '```');
         console.log("Message sent");
