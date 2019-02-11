@@ -3,6 +3,8 @@ function parsing(input) //constructor expects the mesage comeing in minus the co
   var cmd = input.split(' '); //splits the input up at space for prossessing
   for (var i = 1; i < cmd.length; i++)
   { //putting my { on the corect line like a civilised person
+	if (cmd[i].startsWith('-')//if comands
+	{
 	  if (cmd[i].startsWith('-e')) //if eye
 	  {
 	  	if(cmd[i].localeCompare('-e') == 0)//if eye
@@ -93,6 +95,10 @@ function parsing(input) //constructor expects the mesage comeing in minus the co
   	}
 	  //proboly should have uesd a case statement but what ever
   }
+}else
+{
+	text += cmd[i] + ' ';
+}
   text = text.slice(0, -1)
 }
 //setting up vars
