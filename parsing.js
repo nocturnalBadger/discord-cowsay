@@ -1,7 +1,6 @@
 function parsing(input) //constructor expects the mesage comeing in minus the cowsay at the begining
 {
-  var cmd = input.split(' '); //splits the input up at - for prossessing
-  text = "";
+  var cmd = input.split(' '); //splits the input up at space for prossessing
   for (var i = 1; i < cmd.length; i++)
   { //putting my { on the corect line like a civilised person
 	  if (cmd[i].startsWith('-e')) //if eye
@@ -12,9 +11,9 @@ function parsing(input) //constructor expects the mesage comeing in minus the co
 		  	i += 1;
   		}
 	  	else
-		  {
-			  eyes = cmd[i].substring('-e'.length);
-		  }
+		{
+			eyes = cmd[i].substring('-e'.length);
+		}
 	  }
 	  else if (cmd[i].startsWith('-f')) //if cow
 	  {
