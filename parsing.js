@@ -93,12 +93,12 @@ function parsing(input) //constructor expects the mesage comeing in minus the co
   	{
   		text += cmd[i] + ' ';
   	}
-	  //proboly should have uesd a case statement but what ever
+	//proboly should have uesd a case statement but what ever
+     }else
+     {
+	   text += cmd[i] + ' ';
+     }
   }
-}else
-{
-	text += cmd[i] + ' ';
-}
   text = text.slice(0, -1)
 }
 //setting up vars
