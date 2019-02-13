@@ -29,6 +29,8 @@ bot.on('message', message => {
         if (text == "")
             text = helpText;
 
+         text = text.replace(/```/g, '\'\'\'');
+        
         var cowSaid = cowsay.say({
             text: text,
         });
@@ -46,6 +48,8 @@ bot.on('message', message => {
         if (text == "")
             text = helpText;
 
+         text = text.replace(/```/g, '\'\'\'');
+        
         var cowSaid = cowsay.think({
             text: text,
         });
