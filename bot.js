@@ -1,7 +1,6 @@
 var cowsay = require('cowsay');
 var Discord = require('discord.js');
 var auth = require('./auth.json');
-var blacklist = require('./blacklist.json');
 
 // Initialize Discord Bot
 var bot = new Discord.Client();
@@ -15,22 +14,17 @@ bot.on('ready', function (evt) {
 var helpText = "Tell me to say something by\n" +
                "typing: cowsay <message>\n\n" +
                "Also try: cowthink <message>";
-var deniedText = "I'm sorry, I will not say that.";
 
 bot.on('message', message => {
     if (message.content.startsWith('cowsay')||message.content.startsWith('Cowsay')) {
         var text = message.content.substring('cowsay'.length + 1);
         console.log("Request received");
-        if (blacklist.indexOf(message.author.id) != -1) {
-            console.log("User is blacklisted. Request will be denied.");
-            text = deniedText;
-        }
 
         if (text == "")
             text = helpText;
 
          text = text.replace(/```/g, '\'\'\'');
-        
+
         var cowSaid = cowsay.say({
             text: text,
         });
@@ -41,15 +35,12 @@ bot.on('message', message => {
     else if (message.content.startsWith('cowthink')||message.content.startsWith('Cowthink')) {
         var text = message.content.substring('cowthink'.length + 1);
         console.log("Request received");
-        if (blacklist.indexOf(message.author.id) != -1) {
-            console.log("User is blacklisted. Request will be denied.");
-            text = deniedText;
-        }
+
         if (text == "")
             text = helpText;
 
          text = text.replace(/```/g, '\'\'\'');
-        
+
         var cowSaid = cowsay.think({
             text: text,
         });
