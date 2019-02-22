@@ -17,25 +17,27 @@ var helpText = "Tell me to say something by\n" +
 
 bot.on('message', message => {
     console.log("Request received");
-    var action = null;
-    if (message.content.startsWith('cowsay') || message.content.startsWith('Cowsay')) {
-        action = cowsay.say;
+    var cowAction = null;
+    var messageText = message.content;
+
+    if (messageText.startsWith('cowsay') || messageText.startsWith('Cowsay')) {
+        cowAction = cowsay.say;
     }
-    else if (message.content.startsWith('cowthink') || message.content.startsWith('Cowthink')) {
-        action = cowsay.think;
+    else if (messageText.startsWith('cowthink') || messageText.startsWith('Cowthink')) {
+        cowAction = cowsay.think;
     }
 
-    if (action != null) {
-        var text = message.content.substring(message.content.indexOf(" ") + 1);
+    if (cowAction != null) {
+        var text = messageText.substring(messageText.indexOf(" ") + 1);
 
         if (text == "")
             text = helpText;
 
-            text = text.replace(/```/g, '\'\'\''); // ```
+        text = text.replace(/```/g, '\'\'\''); // ```
 
-            var cowSaid = action({
-                text: text,
-            });
+        var cowSaid = cowAction({
+            text: text,
+        });
 
         message.channel.send('```' + cowSaid + '```');
         console.log("Message sent");
