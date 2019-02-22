@@ -16,34 +16,26 @@ var helpText = "Tell me to say something by\n" +
                "Also try: cowthink <message>";
 
 bot.on('message', message => {
-    if (message.content.startsWith('cowsay')||message.content.startsWith('Cowsay')) {
-        var text = message.content.substring('cowsay'.length + 1);
-        console.log("Request received");
-
-        if (text == "")
-            text = helpText;
-
-         text = text.replace(/```/g, '\'\'\'');
-
-        var cowSaid = cowsay.say({
-            text: text,
-        });
-
-        message.channel.send('```' + cowSaid + '```');
-        console.log("Message sent");
+    console.log("Request received");
+    var action = null;
+    if (message.content.startsWith('cowsay') || message.content.startsWith('Cowsay')) {
+        action = cowsay.say;
     }
-    else if (message.content.startsWith('cowthink')||message.content.startsWith('Cowthink')) {
-        var text = message.content.substring('cowthink'.length + 1);
-        console.log("Request received");
+    else if (message.content.startsWith('cowthink') || message.content.startsWith('Cowthink')) {
+        action = cowsay.think;
+    }
+
+    if (action != null) {
+        var text = message.content.substring(message.content.indexOf(" ") + 1);
 
         if (text == "")
             text = helpText;
 
-         text = text.replace(/```/g, '\'\'\'');
+            text = text.replace(/```/g, '\'\'\''); // ```
 
-        var cowSaid = cowsay.think({
-            text: text,
-        });
+            var cowSaid = action({
+                text: text,
+            });
 
         message.channel.send('```' + cowSaid + '```');
         console.log("Message sent");
