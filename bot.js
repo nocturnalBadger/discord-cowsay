@@ -19,16 +19,19 @@ bot.on('message', message => {
     console.log("Request received");
     var cowAction = null;
     var messageText = message.content;
+    var messageIndex = 0;
 
     if (messageText.startsWith('cowsay') || messageText.startsWith('Cowsay')) {
         cowAction = cowsay.say;
+        messageIndex = 7;
     }
     else if (messageText.startsWith('cowthink') || messageText.startsWith('Cowthink')) {
         cowAction = cowsay.think;
+        messageIndex = 9;
     }
 
     if (cowAction != null) {
-        var text = messageText.substring(messageText.indexOf(" ") + 1);
+        var text = messageText.substring(messageIndex);
 
         if (text == "")
             text = helpText;
