@@ -1,3 +1,5 @@
+/*jslint node: true, esversion: 6*/
+"use strict";
 var cowsay = require('cowsay');
 var Discord = require('discord.js');
 var auth = require('./auth.json');
@@ -7,7 +9,7 @@ var bot = new Discord.Client();
 
 bot.login(auth.token);
 
-bot.on('ready', function (evt) {
+bot.on('ready', function () {
     console.log('Connected');
 });
 
@@ -30,11 +32,12 @@ bot.on('message', message => {
         messageIndex = 9;
     }
 
-    if (cowAction != null) {
+    if (cowAction !== null) {
         var text = messageText.substring(messageIndex);
 
-        if (text == "")
+        if (text === "") {
             text = helpText;
+        }
 
         text = text.replace(/```/g, '\'\'\''); // ```
 
@@ -50,7 +53,7 @@ bot.on('message', message => {
 var cleanupFn = function cleanup() {
     console.log("Logging off");
     bot.destroy();
-}
+};
 
 process.on('SIGINT', cleanupFn);
 process.on('SIGTERM', cleanupFn);
