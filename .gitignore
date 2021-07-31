@@ -3,3 +3,7 @@ node_modules
 package-lock.json
 *.swp
 blacklist.json
+__pycache__
+cowsay
+venv
+.env
