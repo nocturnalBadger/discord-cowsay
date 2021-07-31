@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"net/http"
+	"strings"
 
 	"github.com/bsdlp/discord-interactions-go/interactions"
 	"github.com/Code-Hex/Neo-cowsay"
@@ -109,6 +110,7 @@ func Cowsay(options *[]interactions.ApplicationCommandInteractionDataOption, thi
 	for _, option := range(*options) {
 		if option.Name == "message" {
 			message, _ := option.Value.(string)
+			message = strings.ReplaceAll(message, "```", "\\`\\`\\`")
 			cowsayOptions = append(cowsayOptions, cowsay.Phrase(message))
 		}
 		if option.Name == "cowfile" {
