@@ -6,11 +6,11 @@ services:
       DISCORD_PUBLIC_KEY: 33ec5fa8fa1982bb3d5be20d6c132cda04777ec4b587dce09c37bcbc805f337b
     labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.morshutalk.rule=Host(`cowsay.yoinks.org`)"
-        - "traefik.http.routers.morshutalk.entrypoints=websecure"
-        - "traefik.http.routers.morshutalk.tls=true"
-        - "traefik.http.routers.morshutalk.tls.certresolver=letencrypt"
-        - "traefik.http.services.morshutalk.loadbalancer.server.port=80"
+        - "traefik.http.routers.cowsay.rule=Host(`cowsay.yoinks.org`)"
+        - "traefik.http.routers.cowsay.entrypoints=websecure"
+        - "traefik.http.routers.cowsay.tls=true"
+        - "traefik.http.routers.cowsay.tls.certresolver=letencrypt"
+        - "traefik.http.services.cowsay.loadbalancer.server.port=80"
     networks:
       - frontend
 networks:
