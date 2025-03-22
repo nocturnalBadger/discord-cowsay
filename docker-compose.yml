@@ -1,0 +1,16 @@
+services:
+  morshutalk:
+    container_name: morshutalk
+    image: ghcr.io/nocturnalbadger/morshutalk-api
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.morshutalk.rule=Host(`cowsay.yoinks.org`)"
+        - "traefik.http.routers.morshutalk.entrypoints=websecure"
+        - "traefik.http.routers.morshutalk.tls=true"
+        - "traefik.http.routers.morshutalk.tls.certresolver=letencrypt"
+        - "traefik.http.services.morshutalk.loadbalancer.server.port=80"
+    networks:
+      - frontend
+networks:
+  frontend:
+    name: frontend
