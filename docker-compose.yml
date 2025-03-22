@@ -1,7 +1,7 @@
 services:
   morshutalk:
     container_name: morshutalk
-    image: ghcr.io/nocturnalbadger/morshutalk-api
+    image: ghcr.io/nocturnalbadger/discord-cowsay
     labels:
         - "traefik.enable=true"
         - "traefik.http.routers.morshutalk.rule=Host(`cowsay.yoinks.org`)"
