@@ -1,7 +1,9 @@
 services:
   morshutalk:
-    container_name: morshutalk
+    container_name: cowsay
     image: ghcr.io/nocturnalbadger/discord-cowsay
+    environment:
+      DISCORD_PUBLIC_KEY: 33ec5fa8fa1982bb3d5be20d6c132cda04777ec4b587dce09c37bcbc805f337b
     labels:
         - "traefik.enable=true"
         - "traefik.http.routers.morshutalk.rule=Host(`cowsay.yoinks.org`)"
