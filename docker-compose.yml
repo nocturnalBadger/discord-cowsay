@@ -1,5 +1,5 @@
 services:
-  morshutalk:
+  cowsay:
     container_name: cowsay
     image: ghcr.io/nocturnalbadger/discord-cowsay
     environment:
